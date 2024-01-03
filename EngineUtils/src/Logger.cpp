@@ -2,14 +2,14 @@
 // Created by Napomosh on 31.12.2023
 //
 
-#include "Logger.h"
+#include "Logger.hpp"
 
 namespace EngineUtils {
-    void Logger::Log(ELog_level log_level, const std::string& message) {
+    void Logger::Log(ELogLevel logLevel, const std::string& message) {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        int white_color = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
-        int color = white_color;
-        switch(log_level){
+        int whiteColor = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED;
+        int color = whiteColor;
+        switch(logLevel){
             case(LOG_LEVEL_FATAL):
                 color = FOREGROUND_RED;
                 break;
@@ -20,7 +20,7 @@ namespace EngineUtils {
                 color = FOREGROUND_RED | FOREGROUND_GREEN;
                 break;
             case(LOG_LEVEL_INFO):
-                color = white_color;
+                color = whiteColor;
                 break;
             case(LOG_LEVEL_DEBUG):
                 color = FOREGROUND_BLUE;
@@ -30,7 +30,7 @@ namespace EngineUtils {
                 break;
         }
         SetConsoleTextAttribute(hConsole, color);
-        std::cout << log_levels[log_level] << message << "\n";
-        SetConsoleTextAttribute(hConsole, white_color);
+        std::cout << arrLogLevels[logLevel] << message << "\n";
+        SetConsoleTextAttribute(hConsole, whiteColor);
     }
 }

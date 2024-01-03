@@ -11,12 +11,12 @@
 #define SRRELEASE 1
 #endif
 
-// Platform detection
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
-#define SRPLATFORM_WINDOWS 1
-#ifndef _WIN64
-#error "64-bit is required on Windows!"
-#endif
+#ifdef EXPORT
+// Exports
+#define SRAPI __declspec(dllexport)
+#else
+// Imports
+#define SRAPI __declspec(dllimport)
 #endif
 
 #endif //SUNRISEENGINE_GLOBAL_DEFINES_H
